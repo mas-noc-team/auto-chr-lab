@@ -1,19 +1,19 @@
-# Auto CHR Lab (Otomasi MikroTik CHR via Docker)
+# Otomasi MikroTik CHR via Docker
 
-Dokumentasi ini berisi panduan lengkap untuk melakukan *deployment* dan konfigurasi otomatis (IP Address, Gateway, DNS, dan Password) pada 5 instance MikroTik Cloud Hosted Router (CHR) di dalam container Docker menggunakan skrip Python (`pexpect`)
+*deployment* dan konfigurasi otomatis (IP Address, Gateway, DNS, dan Password) pada 5 instance MikroTik Cloud Hosted Router (CHR) di dalam container Docker menggunakan skrip Python (`pexpect`)
 
 ---
 
 ## 1. Arsitektur Jaringan
 
 * **Subnet Internal (Docker Bridge):** `172.20.0.0/24`
-* **Gateway:** `172.20.0.1`[cite: 3]
+* **Gateway:** `172.20.0.1`
 * **Daftar Instance Container:**
-  * `chr1`: IP `172.20.0.10` | Winbox Port `8291` | SSH Port `2201`[cite: 5]
-  * `chr2`: IP `172.20.0.11` | Winbox Port `8292` | SSH Port `2202`[cite: 5]
-  * `chr3`: IP `172.20.0.12` | Winbox Port `8293` | SSH Port `2203`[cite: 5]
-  * `chr4`: IP `172.20.0.13` | Winbox Port `8294` | SSH Port `2204`[cite: 5]
-  * `chr5`: IP `172.20.0.14` | Winbox Port `8295` | SSH Port `2205`[cite: 5]
+  * `chr1`: IP `172.20.0.10` | Winbox Port `8291` | SSH Port `2201`
+  * `chr2`: IP `172.20.0.11` | Winbox Port `8292` | SSH Port `2202`
+  * `chr3`: IP `172.20.0.12` | Winbox Port `8293` | SSH Port `2203`
+  * `chr4`: IP `172.20.0.13` | Winbox Port `8294` | SSH Port `2204`
+  * `chr5`: IP `172.20.0.14` | Winbox Port `8295` | SSH Port `2205`
 
 ---
 
@@ -284,13 +284,13 @@ finally:
 
 1. **Crash Encoding Byte QEMU & TTY ANSI Escape:**
    * **Masalah:** Emulator QEMU mengirimkan karakter mentah serta *ANSI escape sequence* (seperti `\x1b[26;3R`) ke terminal, menyebabkan `pexpect` standar UTF-8 mengalami *crash* atau salah membaca *prompt*.
-   * **Solusi:** Menambahkan argumen `encoding='latin-1'` pada modul `pexpect.spawn` agar seluruh byte mentah aman dibaca[cite: 3].
+   * **Solusi:** Menambahkan argumen `encoding='latin-1'` pada modul `pexpect.spawn` agar seluruh byte mentah aman dibaca.
 2. **Keterlambatan Booting & QEMU CPU Contention:**
    * **Masalah:** Ketika kelima CHR dinyalakan secara serentak (`docker compose up -d`), instance `chr3` hingga `chr5` mengalami *timeout* karena CPU *host* mengalami *bottleneck* saat instance QEMU bersamaan melakukan *booting* dan *generate* kunci SSH.
-   * **Solusi:** Menerapkan pendekatan **Deployment Sekuensial** pada `deploy.sh`. Container dinyalakan satu per satu dengan jeda penantian *booting* selama 20 detik sebelum skrip Python mengeksekusi konfigurasinya[cite: 4].
+   * **Solusi:** Menerapkan pendekatan **Deployment Sekuensial** pada `deploy.sh`. Container dinyalakan satu per satu dengan jeda penantian *booting* selama 20 detik sebelum skrip Python mengeksekusi konfigurasinya.
 3. **Penanganan EULA yang Menjebak:**
    * **Masalah:** Jika pertanyaan lisensi dijawab dengan menekan *Enter* kosong, RouterOS menganggapnya "Yes" sehingga TTY terkunci dalam pager teks GNU/GPL yang sangat panjang.
-   * **Solusi:** Skrip diprogram untuk secara presisi mendeteksi teks lisensi dan meresponsnya secara eksplisit dengan huruf `"n"`[cite: 3].
+   * **Solusi:** Skrip diprogram untuk secara presisi mendeteksi teks lisensi dan meresponsnya secara eksplisit dengan huruf `"n"`.
 
 ---
 
@@ -307,7 +307,7 @@ finally:
     ```
 
 ```
- === 6. Pengujian Akhir Ping Sweep 5 CHR ===
+ === Akhir dari deploy, Uji Ping Sweep 5 CHR ===
 IP 172.20.0.10: REACHABLE [OK]
 IP 172.20.0.11: REACHABLE [OK]
 IP 172.20.0.12: REACHABLE [OK]
