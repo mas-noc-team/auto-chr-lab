@@ -1,0 +1,87 @@
+networks:
+  chr_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+services:
+  chr1:
+    image: mikrotik/chr:latest
+    container_name: chr1
+    privileged: true
+    tty: true
+    stdin_open: true
+    restart: always
+    command: sh -c "(sleep 3 && ifconfig eth0 promisc && ifconfig br0 promisc) & /start.sh"
+    ports:
+      - "8291:8291"
+      - "2201:22"
+      - "8081:80"
+    networks:
+      chr_net:
+        ipv4_address: 172.20.0.10
+
+  chr2:
+    image: mikrotik/chr:latest
+    container_name: chr2
+    privileged: true
+    tty: true
+    stdin_open: true
+    restart: always
+    command: sh -c "(sleep 3 && ifconfig eth0 promisc && ifconfig br0 promisc) & /start.sh"
+    ports:
+      - "8292:8291"
+      - "2202:22"
+      - "8082:80"
+    networks:
+      chr_net:
+        ipv4_address: 172.20.0.11
+
+  chr3:
+    image: mikrotik/chr:latest
+    container_name: chr3
+    privileged: true
+    tty: true
+    stdin_open: true
+    restart: always
+    command: sh -c "(sleep 3 && ifconfig eth0 promisc && ifconfig br0 promisc) & /start.sh"
+    ports:
+      - "8293:8291"
+      - "2203:22"
+      - "8083:80"
+    networks:
+      chr_net:
+        ipv4_address: 172.20.0.12
+
+  chr4:
+    image: mikrotik/chr:latest
+    container_name: chr4
+    privileged: true
+    tty: true
+    stdin_open: true
+    restart: always
+    command: sh -c "(sleep 3 && ifconfig eth0 promisc && ifconfig br0 promisc) & /start.sh"
+    ports:
+      - "8294:8291"
+      - "2204:22"
+      - "8084:80"
+    networks:
+      chr_net:
+        ipv4_address: 172.20.0.13
+
+  chr5:
+    image: mikrotik/chr:latest
+    container_name: chr5
+    privileged: true
+    tty: true
+    stdin_open: true
+    restart: always
+    command: sh -c "(sleep 3 && ifconfig eth0 promisc && ifconfig br0 promisc) & /start.sh"
+    ports:
+      - "8295:8291"
+      - "2205:22"
+      - "8085:80"
+    networks:
+      chr_net:
+        ipv4_address: 172.20.0.14
