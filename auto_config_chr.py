@@ -76,7 +76,7 @@ try:
 
     # 5. Menunggu sampai benar-benar masuk ke CLI Prompt '>'
     print(f"[*] {target_container}: Menunggu CLI prompt...")
-    child.expect(r">\s*", timeout=15)
+    child.expect(r">\s*", timeout=35)
     print(f"[+] {target_container}: Berhasil masuk ke CLI prompt!")
 
     # Jeda mikro agar buffer stabil
