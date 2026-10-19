@@ -1,4 +1,4 @@
-# Otomasi MikroTik CHR via Docker
+# Otomasi Lab MikroTik CHR via Docker
 
 ## Cara Penggunaan (Quick Start)
 
@@ -12,15 +12,27 @@
     ./deploy.sh
     ```
 
- === Akhir dari deploy, akan auto uji Ping pada 5 CHR ===
-```
-IP 172.20.0.10: REACHABLE [OK]
-IP 172.20.0.11: REACHABLE [OK]
-IP 172.20.0.12: REACHABLE [OK]
-IP 172.20.0.13: REACHABLE [OK]
-IP 172.20.0.14: REACHABLE [OK]
-=== DEPLOYMENT SELESAI DAN VALID ===
-```
+
+---
+Di terminal baru, bisa memantau proses.
+
+`docker attach chr1`
+<p align="center">
+  <img width="460" height="300" src="/Users/kube/work/mikrotik-lab/auto-chr-lab-main/capture/chr1_v01.png">
+</p>
+
+
+
+..
+....
+
+`docker attach chr5`
+<p align="center">
+  <img width="460" height="300" src="/Users/kube/work/mikrotik-lab/auto-chr-lab-main/capture/chr5_v02.png">
+</p>
+
+
+---
 
 ## 1. Arsitektur Jaringan
 
