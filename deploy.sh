@@ -29,7 +29,7 @@ for i in {1..5}; do
 done
 
 echo -e "\n=== 4. Pengujian Akhir Ping Sweep 5 CHR ==="
-for ip in 172.20.0.10 172.20.0.11 172.20.0.12 172.20.0.13 172.20.0.14; do
+for ip in 172.20.0.11 172.20.0.12 172.20.0.13 172.20.0.14 172.20.0.15; do
   ping -c 1 -W 1 $ip >/dev/null 2>&1 && echo "IP $ip: REACHABLE [OK]" || { echo "IP $ip: UNREACHABLE [FAILED]"; exit 1; }
 done
 
