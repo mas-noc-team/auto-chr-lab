@@ -1,5 +1,26 @@
 # Otomasi MikroTik CHR via Docker
 
+## Cara Penggunaan (Quick Start)
+
+1. Pastikan seluruh file (`docker-compose.yml`, `deploy.sh`, dan `auto_config_chr.py`) berada pada direktori yang sama di server Ubuntu Anda.
+2. Berikan hak akses eksekusi pada berkas *bash script*:
+   ```bash
+   chmod +x deploy.sh auto_config_chr.py
+   ```
+3. Jalankan proses otomatisasi:
+    ```bash
+    ./deploy.sh
+    ```
+
+ === Akhir dari deploy, akan auto uji Ping pada 5 CHR ===
+```
+IP 172.20.0.10: REACHABLE [OK]
+IP 172.20.0.11: REACHABLE [OK]
+IP 172.20.0.12: REACHABLE [OK]
+IP 172.20.0.13: REACHABLE [OK]
+IP 172.20.0.14: REACHABLE [OK]
+=== DEPLOYMENT SELESAI DAN VALID ===
+```
 
 ## 1. Arsitektur Jaringan
 
@@ -291,31 +312,3 @@ finally:
 
 ---
 
-## 4. Cara Penggunaan (Quick Start)
-
-1. Pastikan seluruh file (`docker-compose.yml`, `deploy.sh`, dan `auto_config_chr.py`) berada pada direktori yang sama di server Ubuntu Anda.
-2. Berikan hak akses eksekusi pada berkas *bash script*:
-   ```bash
-   chmod +x deploy.sh auto_config_chr.py
-   ```
-3. Jalankan proses otomatisasi:
-    ```bash
-    ./deploy.sh
-    ```
-
-```
- === Akhir dari deploy, Uji Ping Sweep 5 CHR ===
-IP 172.20.0.10: REACHABLE [OK]
-IP 172.20.0.11: REACHABLE [OK]
-IP 172.20.0.12: REACHABLE [OK]
-IP 172.20.0.13: REACHABLE [OK]
-IP 172.20.0.14: REACHABLE [OK]
-=== DEPLOYMENT SELESAI DAN VALID ===
-```
-
-
-
-
-
-# auto-chr-lab
-# auto-chr-lab
