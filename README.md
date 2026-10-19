@@ -18,7 +18,7 @@ Di terminal baru, bisa memantau proses.
 
 `docker attach chr1`
 <p align="center">
-  <img width="460" height="300" src="/Users/kube/work/mikrotik-lab/auto-chr-lab-main/capture/chr1_v01.png">
+  <img src="/Users/kube/work/mikrotik-lab/auto-chr-lab-main/capture/chr1_v01.png">
 </p>
 
 
@@ -28,7 +28,7 @@ Di terminal baru, bisa memantau proses.
 
 `docker attach chr5`
 <p align="center">
-  <img width="460" height="300" src="/Users/kube/work/mikrotik-lab/auto-chr-lab-main/capture/chr5_v02.png">
+  <img src="/Users/kube/work/mikrotik-lab/auto-chr-lab-main/capture/chr5_v02.png">
 </p>
 
 
