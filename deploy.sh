@@ -18,8 +18,8 @@ for i in {1..5}; do
     echo -e "\n>>> Menyalakan $CONTAINER..."
     docker compose start $CONTAINER
     
-    echo ">>> Menunggu $CONTAINER selesai booting (20 detik)..."
-    sleep 20
+    echo ">>> Menunggu $CONTAINER selesai booting (40 detik)..."
+    sleep 40
     
     echo ">>> Mengeksekusi konfigurasi otomatis untuk $CONTAINER..."
     ./auto_config_chr.py $CONTAINER
