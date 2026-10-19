@@ -39,11 +39,11 @@ Di terminal baru, bisa memantau proses.
 * **Subnet Internal (Docker Bridge):** `172.20.0.0/24`
 * **Gateway:** `172.20.0.1`
 * **Daftar Instance Container:**
-  * `chr1`: IP `172.20.0.10` | Winbox Port `8291` | SSH Port `2201`
-  * `chr2`: IP `172.20.0.11` | Winbox Port `8292` | SSH Port `2202`
-  * `chr3`: IP `172.20.0.12` | Winbox Port `8293` | SSH Port `2203`
-  * `chr4`: IP `172.20.0.13` | Winbox Port `8294` | SSH Port `2204`
-  * `chr5`: IP `172.20.0.14` | Winbox Port `8295` | SSH Port `2205`
+  * `chr1`: IP `172.20.0.11` | Winbox Port `8291` | SSH Port `2201`
+  * `chr2`: IP `172.20.0.12` | Winbox Port `8292` | SSH Port `2202`
+  * `chr3`: IP `172.20.0.13` | Winbox Port `8293` | SSH Port `2203`
+  * `chr4`: IP `172.20.0.14` | Winbox Port `8294` | SSH Port `2204`
+  * `chr5`: IP `172.20.0.15` | Winbox Port `8295` | SSH Port `2205`
 
 ---
 
@@ -75,7 +75,7 @@ services:
       - "8081:80"
     networks:
       chr_net:
-        ipv4_address: 172.20.0.10
+        ipv4_address: 172.20.0.11
 
   chr2:
     image: mikrotik/chr:latest
@@ -91,7 +91,7 @@ services:
       - "8082:80"
     networks:
       chr_net:
-        ipv4_address: 172.20.0.11
+        ipv4_address: 172.20.0.12
 
   chr3:
     image: mikrotik/chr:latest
@@ -107,7 +107,7 @@ services:
       - "8083:80"
     networks:
       chr_net:
-        ipv4_address: 172.20.0.12
+        ipv4_address: 172.20.0.13
 
   chr4:
     image: mikrotik/chr:latest
@@ -123,7 +123,7 @@ services:
       - "8084:80"
     networks:
       chr_net:
-        ipv4_address: 172.20.0.13
+        ipv4_address: 172.20.0.14
 
   chr5:
     image: mikrotik/chr:latest
@@ -139,7 +139,7 @@ services:
       - "8085:80"
     networks:
       chr_net:
-        ipv4_address: 172.20.0.14
+        ipv4_address: 172.20.0.15
 ```
 
 ### B. `deploy.sh` (Orkestrator Sekuensial)
@@ -177,7 +177,7 @@ for i in {1..5}; do
 done
 
 echo -e "\n=== 4. Pengujian Akhir Ping Sweep 5 CHR ==="
-for ip in 172.20.0.10 172.20.0.11 172.20.0.12 172.20.0.13 172.20.0.14; do
+for ip in 172.20.0.11 172.20.0.12 172.20.0.13 172.20.0.14 172.20.0.15; do
   ping -c 1 -W 1 $ip >/dev/null 2>&1 && echo "IP $ip: REACHABLE [OK]" || { echo "IP $ip: UNREACHABLE [FAILED]"; exit 1; }
 done
 
@@ -200,11 +200,11 @@ if len(sys.argv) != 2:
 target_container = sys.argv[1]
 
 chrs = {
-    "chr1": "172.20.0.10",
-    "chr2": "172.20.0.11",
-    "chr3": "172.20.0.12",
-    "chr4": "172.20.0.13",
-    "chr5": "172.20.0.14"
+    "chr1": "172.20.0.11",
+    "chr2": "172.20.0.12",
+    "chr3": "172.20.0.13",
+    "chr4": "172.20.0.14",
+    "chr5": "172.20.0.15"
 }
 
 if target_container not in chrs:
