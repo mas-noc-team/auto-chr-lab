@@ -1,8 +1,5 @@
 # Otomasi MikroTik CHR via Docker
 
-*deployment* dan konfigurasi otomatis (IP Address, Gateway, DNS, dan Password) pada 5 instance MikroTik Cloud Hosted Router (CHR) di dalam container Docker menggunakan skrip Python (`pexpect`)
-
----
 
 ## 1. Arsitektur Jaringan
 
