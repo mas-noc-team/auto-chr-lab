@@ -40,12 +40,12 @@ try:
 
     # 1. Menunggu prompt Login:
     print(f"[*] {target_container}: Menunggu prompt Login...")
-    child.expect(r"[Ll]ogin:\s*", timeout=20)
+    child.expect(r"[Ll]ogin:\s*", timeout=40)
     child.sendline("admin")
 
     # 2. Menunggu prompt Password:
     print(f"[*] {target_container}: Menunggu prompt Password...")
-    child.expect(r"[Pp]assword:\s*", timeout=15)
+    child.expect(r"[Pp]assword:\s*", timeout=35)
     child.send("\r") # Kirim Enter murni untuk password kosong
 
     # 3. Menangani Layar Lisensi EULA atau Langsung ke Password Baru
@@ -54,24 +54,24 @@ try:
         r"Do you want to see the software license\? \[Y/n\]:\s*", # 0
         r"press Enter \(q to abort\)\s*",                     # 1
         r"new password>\s*"                                      # 2
-    ], timeout=20)
+    ], timeout=40)
 
     if idx == 0:
         print(f"[*] {target_container}: Menolak lisensi dengan 'n'...")
         child.sendline("n")
         # Setelah menolak lisensi, tunggu prompt password baru
-        child.expect(r"new password>\s*", timeout=10)
+        child.expect(r"new password>\s*", timeout=30)
     elif idx == 1:
         print(f"[*] {target_container}: Keluar dari pager lisensi...")
         child.send("q")
-        child.expect(r"new password>\s*", timeout=10)
+        child.expect(r"new password>\s*", timeout=30)
 
     # 4. Memasukkan Password Baru ('x') secara sinkron
     print(f"[*] {target_container}: Mengatur password baru...")
     child.sendline(password)
     
     print(f"[*] {target_container}: Mengonfirmasi ulangi password baru...")
-    child.expect(r"repeat new password>\s*", timeout=10)
+    child.expect(r"repeat new password>\s*", timeout=30)
     child.sendline(password)
 
     # 5. Menunggu sampai benar-benar masuk ke CLI Prompt '>'
@@ -85,19 +85,19 @@ try:
     # 6. Injeksi Konfigurasi Jaringan Secara Berurutan & Aman
     print(f"[*] {target_container}: Menghapus IP lama...")
     child.sendline("/ip address remove [find]")
-    child.expect(r">\s*", timeout=10)
+    child.expect(r">\s*", timeout=30)
 
     print(f"[*] {target_container}: Memasang IP {ip}/24...")
     child.sendline(f"/ip address add address={ip}/24 interface=ether1")
-    child.expect(r">\s*", timeout=10)
+    child.expect(r">\s*", timeout=30)
 
     print(f"[*] {target_container}: Memasang Gateway {gw}...")
     child.sendline(f"/ip route add gateway={gw}")
-    child.expect(r">\s*", timeout=10)
+    child.expect(r">\s*", timeout=30)
 
     print(f"[*] {target_container}: Menyetel DNS server...")
     child.sendline("/ip dns set servers=8.8.8.8,1.1.1.1")
-    child.expect(r">\s*", timeout=10)
+    child.expect(r">\s*", timeout=30)
 
     print(f"\n[OK] {target_container} ({ip}) BERHASIL DIKONFIGURASI!")
 
